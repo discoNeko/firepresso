@@ -49,7 +49,7 @@ function Article(props) {
       snapshot.forEach((doc)=>{
         newSections[doc.id] = doc.data();
       });
-      console.log("sections", newSections);
+      console.log("sections", article);
       setSections(newSections);
     });
     return detatcher;
@@ -80,7 +80,7 @@ function Article(props) {
   }
   const updateSection = async (resourceId, index, markdown, raw) => {
     await refArticle.collection("sections").doc(resourceId).set({
-      markdown, 
+      markdown,
       raw
     }, {merge:true})
 
@@ -112,8 +112,8 @@ function Article(props) {
   const toggleReadOnly = () => {
     setReadOnly(!readOnly);
   }
-  const aaaaaaa = () =>{ 
-    console.log(aaaaaaa)
+  const aaaaaaa = () =>{
+    window.location.href = "http://twitter.com/share?url=https://mytest-e3f37.firebaseapp.com/article/" + userId + "/" + articleId +"&text="+ article.text +"&hashtags=#test";
   }
 
   if (!article || !sections) {
@@ -145,7 +145,7 @@ function Article(props) {
             </Typography>
           </Grid>
           {
-            canEdit && 
+            canEdit &&
             <Grid item xs={1}>
               <IconButton size="small" onClick={toggleReadOnly}>
                 <EditIcon />
@@ -158,15 +158,15 @@ function Article(props) {
           </Grid>
           <Grid item xs={ 11 }>
             {
-              editMode && 
+              editMode &&
               <BlogSection index={ 0 } resource={{}} saveSection={insertSection} insertImage={insertImage} {...context} />
             }
             {
               article.sections.map((sectionId, index)=>{
                 return <div key={sectionId}>
-                  <BlogSection index={ index } sectionId={sectionId} resource={ sections[sectionId] } 
-                      saveSection={updateSection} deleteSection={deleteSection} 
-                      insertImage={insertImage} onImageUpload={onImageUpload} 
+                  <BlogSection index={ index } sectionId={sectionId} resource={ sections[sectionId] }
+                      saveSection={updateSection} deleteSection={deleteSection}
+                      insertImage={insertImage} onImageUpload={onImageUpload}
                       readOnly={!editMode} {...context} />
                   { editMode && <BlogSection index={ index+1 } resource={{}}
                       insertImage={insertImage} saveSection={insertSection} {...context} /> }
