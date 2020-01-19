@@ -7,6 +7,7 @@ import MarkdownViewer from './packaged/markdown/MarkdownViewer';
 import MarkdownEditor from './packaged/markdown/MarkdownEditor';
 import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import TwitterButton from './TwitterButton';
 
 const styles = theme => ({
   root: {
@@ -19,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-const About = props => {
+const AboutTest = props => {
   const [editing, setEditing] = useState(false);
   const [resource, setResource] = useState({markdown:"Hello **World**"});
   const { classes, user } = props;
@@ -57,13 +58,17 @@ const About = props => {
         <Grid className={classes.contents}>
           { editing ? editor() : viewer() }
         </Grid>
+        <Grid>
+         <TwitterButton>
+         </TwitterButton> 
+        </Grid>
       </Grid>
     </React.Fragment>
   );
 }
 
-About.propTypes = {
+AboutTest.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(About);
+export default withStyles(styles)(AboutTest);
