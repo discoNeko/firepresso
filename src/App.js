@@ -6,7 +6,6 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import Home from './Home';
 import About from './About';
-import AboutTest from './AboutTest';
 import Login from './Login';
 import Decoder from './Decoder';
 import Article from './blog/Article';
@@ -58,7 +57,6 @@ function App() {
         <Router>
           <Route exact path="/" render={(props) => <Home {...props} {...params} />} />
           <Route exact path="/about" render={(props) => <About {...props} {...params} />} />
-          <Route exact path="/aboutTest" render={(props) => <AboutTest {...props} {...params} />} />
           <Route exact path="/article/:userId/:articleId" render={(props) => <Article {...props} {...params} />} />
           <Route exact path="/login" render={(props) => <Login {...props} {...params} />} />
           <Route exact path="/login/cmd/:encoded" render={(props) => <Login {...props} {...params} />} />

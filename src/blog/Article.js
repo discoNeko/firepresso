@@ -112,8 +112,9 @@ function Article(props) {
   const toggleReadOnly = () => {
     setReadOnly(!readOnly);
   }
-  const aaaaaaa = () =>{
-    window.location.href = "http://twitter.com/share?url=https://mytest-e3f37.firebaseapp.com/article/" + userId + "/" + articleId +"&text="+ article.text +"&hashtags=#test";
+  const shareExecution = () =>{
+    var title = "タイトル：" + article.title;
+    window.location.href = "http://twitter.com/share?url=https://mytest-e3f37.firebaseapp.com/article/" + userId + "/" + articleId +"&text="+ title +"&hashtags=#test";
   }
 
   if (!article || !sections) {
@@ -132,7 +133,7 @@ function Article(props) {
           {
             canEdit ?
             <Grid item xs={1}>
-              <IconButton size="small" onClick={aaaaaaa}>
+              <IconButton size="small" onClick={shareExecution}>
                 <TwitterIcon />
               </IconButton>
             </Grid> :
