@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import useOnDocument from '../common/useOnDocument';
 import { Typography, Grid, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import BlogSection from './BlogSection';
 import CommonFrame from '../CommonFrame';
 
@@ -132,7 +133,7 @@ function Article(props) {
             canEdit ?
             <Grid item xs={1}>
               <IconButton size="small" onClick={aaaaaaa}>
-                <EditIcon />
+                <TwitterIcon />
               </IconButton>
             </Grid> :
             <Grid item xs={ 1 }>
