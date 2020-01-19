@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import useOnDocument from '../common/useOnDocument';
 import { Typography, Grid, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import BlogSection from './BlogSection';
 import CommonFrame from '../CommonFrame';
 
@@ -111,6 +112,9 @@ function Article(props) {
   const toggleReadOnly = () => {
     setReadOnly(!readOnly);
   }
+  const aaaaaaa = () =>{ 
+    console.log(aaaaaaa)
+  }
 
   if (!article || !sections) {
     return ""; // loading...
@@ -125,7 +129,17 @@ function Article(props) {
     <CommonFrame user={user}>
       <div className={frameClass}>
         <Grid container>
-          <Grid item xs={canEdit ? 11 : 12}>
+          {
+            canEdit ?
+            <Grid item xs={1}>
+              <IconButton size="small" onClick={aaaaaaa}>
+                <TwitterIcon />
+              </IconButton>
+            </Grid> :
+            <Grid item xs={ 1 }>
+            </Grid>
+          }
+          <Grid item xs={canEdit ? 10 : 11}>
               <Typography component="h1" variant="h1" gutterBottom className={classes.title}>
               {article.title}
             </Typography>
@@ -139,22 +153,28 @@ function Article(props) {
             </Grid>
           }
         </Grid>
-        {
-          editMode && 
-          <BlogSection index={ 0 } resource={{}} saveSection={insertSection} insertImage={insertImage} {...context} />
-        }
-        {
-          article.sections.map((sectionId, index)=>{
-            return <div key={sectionId}>
-              <BlogSection index={ index } sectionId={sectionId} resource={ sections[sectionId] } 
-                  saveSection={updateSection} deleteSection={deleteSection} 
-                  insertImage={insertImage} onImageUpload={onImageUpload} 
-                  readOnly={!editMode} {...context} />
-              { editMode && <BlogSection index={ index+1 } resource={{}}
-                  insertImage={insertImage} saveSection={insertSection} {...context} /> }
-            </div>
-          })
-        }
+        <Grid container>
+          <Grid item xs={ 1 }>
+          </Grid>
+          <Grid item xs={ 11 }>
+            {
+              editMode && 
+              <BlogSection index={ 0 } resource={{}} saveSection={insertSection} insertImage={insertImage} {...context} />
+            }
+            {
+              article.sections.map((sectionId, index)=>{
+                return <div key={sectionId}>
+                  <BlogSection index={ index } sectionId={sectionId} resource={ sections[sectionId] } 
+                      saveSection={updateSection} deleteSection={deleteSection} 
+                      insertImage={insertImage} onImageUpload={onImageUpload} 
+                      readOnly={!editMode} {...context} />
+                  { editMode && <BlogSection index={ index+1 } resource={{}}
+                      insertImage={insertImage} saveSection={insertSection} {...context} /> }
+                </div>
+              })
+            }
+          </Grid>
+        </Grid>
       </div>
     </CommonFrame>
 );
